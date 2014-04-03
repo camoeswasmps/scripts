@@ -71,10 +71,12 @@ sub memory {
 #}
 sub usodedisco { 
 #$t = $stat->diskusage;
+
+
 	foreach my $key ($stat->diskusage){
 
 #$r = $t->{usage};
-	  print "$key  ,$stas->{total}\n";
+	  print $key, ""  ,$t->{total}($key),"\n";
   #print $key, "", $stat->diskusage($key), "\n";
 
 #	print "tamaño total del disco: $usodedisco->{total} \n";
