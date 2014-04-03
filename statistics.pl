@@ -1,6 +1,6 @@
 use Sys::Statistics::Linux; 
 
-
+#esto es la hostia¡¡ como leches no te lo enseñan en la uni o en el grado????
 
 #sub disk{
 #use Sys::Statistics::Linux::DiskUsage;
