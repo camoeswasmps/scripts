@@ -52,6 +52,31 @@ foreach my $key ($stat->loadavg){
 print $key, "", $stat->loadavg($key), "\n";
 
 }
+sub cpu1 {
+  use Sys::Info;
+  use Sys::Info::Constants qw( :device_cpu );
+  
+  my $info = Sys::Info->new;
+  my $cpu = $info->device( CPU => %options );
+  $k = $cpu->bitness;
+  $m = $cpu->count;
+  $s = $cpu->load || 0;
+  $t = $cpu->speed || 'N/A';
+  $x = scalar($cpu->identify) || 'N/A';
+ #$l = $cpu->load(DCPU_LOAD_LAST_01); 
+  
+  
+  printf "the arquitecture is : $k\n";
+  
+  printf "the number of cores are: $m\n";
+  printf "CPU: $s\n";
+  printf "CPU speed is $t MHz\n";
+  printf "$x\n";
+  
+  }
+  
+ 
+
 
 }
  
@@ -70,19 +95,22 @@ sub memory {
 #print "numero de bytes leidos por el disco fisico por segundo:$disk\n"; 
 #}
 sub usodedisco { 
-#$t = $stat->diskusage;
-
-
-	foreach my $key ($stat->diskusage){
-
-#$r = $t->{usage};
-	  print $key, ""  ,$t->{total}($key),"\n";
-  #print $key, "", $stat->diskusage($key), "\n";
-
-#	print "tamaño total del disco: $usodedisco->{total} \n";
-#	print "espacio libre del mismo: $usodedisco->{free} \n";
-
+use Filesys::Df;
+my $ref = df ("/dev/sda1");
+if (defined($ref)) {
+print "total blocks in /dev/sda1 :$ref->{blocks} Kb\n ";
+print "total free space in /dev/sda1 : $ref->{bfree} Kb\n";
+print "total used space in /dev/sda1: $ref->{used} Kb\n";
 }
+
+
+
+
+
+
+ 	#print "espacio libre del mismo: $usodedisco->{free} \n";
+
+
 }
 sub sysinfo{
 	my $sysinfo = $stat->sysinfo;
@@ -141,10 +169,12 @@ print "number of tcp sockets in use. $sock->{tcp}\n";
 &cpu; 
 &loadavg;
 &memory; 
-#&disk; 
-&usodedisco;
+ 
 &sysinfo;
 &procesos;
-#&net; 
+ 
 &files; 
 &sock;
+&cpu1;
+&usodedisco;
+
