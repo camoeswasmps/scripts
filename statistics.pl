@@ -97,10 +97,11 @@ sub memory {
 sub usodedisco { 
 use Filesys::Df;
 my $ref = df ("/dev/sda1");
+my $ref = df("/dev/sda1", 1);
 if (defined($ref)) {
-print "total blocks in /dev/sda1 :$ref->{blocks} Kb\n ";
-print "total free space in /dev/sda1 : $ref->{bfree} Kb\n";
-print "total used space in /dev/sda1: $ref->{used} Kb\n";
+print "total blocks in /dev/sda1 :$ref->{blocks} bytes\n ";
+print "total free space in /dev/sda1 : $ref->{bfree} bytes\n";
+print "total used space in /dev/sda1: $ref->{used} bytes\n";
 }
 
 
