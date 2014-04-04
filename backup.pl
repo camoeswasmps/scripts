@@ -1,7 +1,7 @@
 sub backup {
 
 system ("mysqldump -av","-u root","-p balmes15","clouddb" >" /seguridad/backup.sql");
-system ("rsync -r","/var/www/html/owncloud/data/*"," /seguridad/") ;
+system ("rsync -rv","/var/www/html/owncloud/data/*"," /seguridad/") ;
 
 
 }                                                     
