@@ -1,7 +1,7 @@
 use Sys::Statistics::Linux; 
 
 #esto es la hostia¡¡ como leches no te lo enseñan en la uni o en el grado????
-
+# Paquetes CPAN utilizados : Filesys::Df y Sys::Statistics::Linux; 
 #sub disk{
 #use Sys::Statistics::Linux::DiskUsage;
 #my $xls =  Sys::Statistics::Linux::DiskUsage->new;
