@@ -40,7 +40,7 @@ print "los 5 procesos que mas consumen: @top5 \n";
 }
 sub cpu {
 my $cpu = $stat->cpustats->{cpu};
-	print " user of the system: $cpu->{user} \n";
+	print "user of the system: $cpu->{user} \n";
 	print "porcentage de uso  total de la cpu:  $cpu->{total} %\n"; 
 
 }
@@ -52,6 +52,7 @@ foreach my $key ($stat->loadavg){
 print $key, "", $stat->loadavg($key), "\n";
 
 }
+
 sub cpu1 {
   use Sys::Info;
   use Sys::Info::Constants qw( :device_cpu );
@@ -79,10 +80,11 @@ sub cpu1 {
 
 
 }
- 
+#esta funcion es bastante parecida a la de abajo , pero no sabia como querias la salida exactamente, asi que te he puesto las dos opciones  
 sub memory {
 	my $memory = $stat->memstats;
 	print "memoria total usada : $memory->{memused} KB \n";
+	print "memoria total libre : $memory->{realfreeper} % \n";
 	print "memoria RAM usada : $memory->{swapused} KB \n";
 }
  #sub disk {
@@ -97,11 +99,13 @@ sub memory {
 sub usodedisco { 
 use Filesys::Df;
 my $ref = df ("/dev/sda1");
-my $ref = df("/dev/sda1", 1);
+my $ref = df("/dev/sda1", 1);#aqui es donde seleccionamos el dato de paquete, byte, megabyte, giga etc. 
 if (defined($ref)) {
-print "total blocks in /dev/sda1 :$ref->{blocks} bytes\n ";
-print "total free space in /dev/sda1 : $ref->{bfree} bytes\n";
+print "total blocks in /dev/sda1:$ref->{blocks} bytes\n";
+print "total free space in /dev/sda1: $ref->{bfree} bytes\n";
 print "total used space in /dev/sda1: $ref->{used} bytes\n";
+
+
 }
 
 
@@ -129,7 +133,7 @@ sub procesos {
 	my $procesos = $stat->procstats;
 	print "procesos funcionando: $procesos->{running}\n";
 	print "procesos creandose: $procesos->{new} por segundo\n";
-	print " número de procesos en crom y anacron : $procesos->{runqueue}\n";
+	print "número de procesos en crom y anacron : $procesos->{runqueue}\n";
 	print "numero de procesos bloqueados: $procesos->{blocked}\n";
 	print "procesos que existen: $procesos->{count}\n";
 }
@@ -149,7 +153,7 @@ sub procesos {
 
 sub files {
 my $files = $stat->filestats;
-print " maximo numero de inodos : $files->{infree}\n";
+print "maximo numero de inodos : $files->{infree}\n";
 print "free directory cache size: $files->{unused}\n";
 print "cuando se acaba la memoria .... : $files->{wantpages}\n";
 #print "number of max inodes: $sock->{inmax}\n";
