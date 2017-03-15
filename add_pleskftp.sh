@@ -1,4 +1,3 @@
-[root@ijlamp-1 ~]# cat /root/bin/add_pleskftp.sh
 #!/bin/sh
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/psa/bin:/usr/local/psa/admin/sbin:/root/bin
